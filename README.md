@@ -66,3 +66,45 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+
+
+<!-- const routing = (
+    <Router>
+      <div>
+        <ul>
+          <li>
+            <NavLink exact activeClassName="active" to="/">
+              Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink activeClassName="active" to="/users">
+              Users
+            </NavLink>
+          </li>
+          <li>
+            <NavLink activeClassName="active" to="/contact">
+              Contact
+            </NavLink>
+          </li>
+        </ul>
+        <hr />
+        <Switch>
+          <Route exact path="/" component={App} />
+          <Route path="/users" component={Users} />
+          <Route path="/contact" component={Contact} />
+          <Route component={Notfound} />
+        </Switch>
+      </div>
+    </Router>
+  ) -->
+
+
+#incomplex apps
+
+#components not reusable
+
+Reducers
+# Reducers are pure functions
+# Never change state or action
