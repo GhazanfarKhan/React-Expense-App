@@ -5,8 +5,8 @@ import './styles/styles.scss';
 import AppRouter from './routers/AppRoute';
 import * as serviceWorker from './serviceWorker';
 import configureStore from './store/configureStore';
-import { addExpense } from './actions/expenses';
-
+import 'react-dates/lib/css/_datepicker.css';
+import './firebase/firebase';
 const store = configureStore();
 
 

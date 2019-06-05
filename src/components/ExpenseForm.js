@@ -2,7 +2,7 @@ import React from "react";
 import moment from "moment";
 import 'react-dates/initialize';
 import { SingleDatePicker } from 'react-dates';
-import 'react-dates/lib/css/_datepicker.css';
+
 
 
 class ExpenseForm extends React.Component {
@@ -37,6 +37,10 @@ class ExpenseForm extends React.Component {
         if (createdAt) {
             this.setState({ createdAt });
         }
+    }
+    onFocusChange = ({ focused }) => {
+        debugger;
+        this.setState({ focused });
     }
     onSubmit = (e) => {
         e.preventDefault();
@@ -80,7 +84,7 @@ class ExpenseForm extends React.Component {
                         date={this.state.createdAt}
                         onDateChange={this.onCreatedAtChange}
                         focused={this.state.focused} // PropTypes.bool
-                        onFocusChange={({ focused }) => this.setState({ focused })}
+                        onFocusChange={this.onFocusChange}
                         id="createdAt"
                         numberOfMonths={1}
                         isOutsideRange={() => false}
