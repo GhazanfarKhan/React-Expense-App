@@ -5,6 +5,7 @@ import './styles/styles.scss';
 import AppRouter from './routers/AppRoute';
 import * as serviceWorker from './serviceWorker';
 import configureStore from './store/configureStore';
+import { startSetExpense } from './actions/expenses';
 import 'react-dates/lib/css/_datepicker.css';
 import './firebase/firebase';
 const store = configureStore();
@@ -22,7 +23,12 @@ const jsx = (
     </Provider>
 );
 
-ReactDOM.render(jsx, document.getElementById('root'));
+ReactDOM.render(<p>Loading ...</p>, document.getElementById('root'));
+
+store.dispatch(startSetExpense()).then(() => {
+    ReactDOM.render(jsx, document.getElementById('root'));
+
+});
 
 
 

@@ -1,4 +1,4 @@
-import { ADD_EXPENSE, REMOVE_EXPENSE, EDIT_EXPENSE } from '../constants/actionType';
+import { ADD_EXPENSE, REMOVE_EXPENSE, EDIT_EXPENSE, SET_EXPENSE } from '../constants/actionType';
 import database from '../firebase/firebase';
 export const addExpense = (expense) => {
     return {
@@ -27,12 +27,20 @@ export const startAddExpense = (expenseData = {}) => {
     }
 }
 
-export const removeExpense = ({ id }) => {
+export const removeExpense = ({ id } = {}) => {
     return {
         type: REMOVE_EXPENSE,
         id
     }
-}
+};
+
+export const startRemoveExpense = ({ id } = {}) => {
+    return (dispatch) => {
+        return database.ref(`expenses/${id}`).remove().then(() => {
+            dispatch(removeExpense({ id }));
+        });
+    };
+};
 
 export const editExpense = (id, updates) => {
     return {
@@ -40,4 +48,32 @@ export const editExpense = (id, updates) => {
         id,
         updates
     }
-}
+};
+export const startEditExpense = (id, updates) => {
+    return (dispatch) => {
+        return database.ref(`expenses/${id}`).update(updates).then(() => {
+            dispatch(editExpense(id, updates));
+        });
+    };
+};
+export const setExpense = (expenses) => {
+    return {
+        type: SET_EXPENSE,
+        expenses
+    }
+};
+
+export const startSetExpense = () => {
+    return (dispatch) => {
+        return database.ref('expenses').once('value').then((snapshot) => {
+            const expenses = [];
+            snapshot.forEach((childSnapshot) => {
+                expenses.push({
+                    id: childSnapshot.key,
+                    ...childSnapshot.val()
+                })
+            });
+            dispatch(setExpense(expenses));
+        });
+    };
+};
