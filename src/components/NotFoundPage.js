@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom'
 
 const NotfoundPage = () => (
     <div>
-        <h1>Not found</h1>
-        <Link to="/"></Link>
+        404 - <Link to="/">Go home</Link>
     </div>
 )
 export default NotfoundPage
